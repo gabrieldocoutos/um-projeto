@@ -5,11 +5,11 @@ export default class UsersWorkouts extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid("id").primary();
+      table.increments("id").primary();
       table.timestamps(true);
-      table.uuid("user_id").unsigned();
+      table.integer("user_id").unsigned();
       table.foreign("user_id").references("users.id");
-      table.uuid("workout_id").unsigned();
+      table.integer("workout_id").unsigned();
       table.foreign("workout_id").references("workouts.id");
     });
   }

@@ -22,4 +22,41 @@ export default class ExercisesController {
       return ctx.response.status(400).send(error);
     }
   }
+
+  public async update(ctx: HttpContextContract) {
+    const { request, params, response } = ctx;
+
+    const id: number = params.id;
+
+    if (isNaN(id)) {
+      return response.status(400).send({ message: "invalid parameters!" });
+    }
+
+    try {
+      await request.validate({ schema: exerciseSchema });
+
+      const exercise: Exercise | null = await Exercise.find(id);
+
+      if (!exercise) {
+        return response.status(404).send({ message: "exercise not found!" });
+      }
+      return Exercise.updateOrCreate({ id }, request.all());
+    } catch (error) {
+      return response.status(400).send(error);
+    }
+  }
+
+  public async delete(ctx: HttpContextContract) {
+    const { response, params } = ctx;
+    const id: number = params.id;
+
+    const exercise: Exercise | null = await Exercise.findOrFail(id);
+
+    if (exercise) {
+      exercise.delete();
+
+      return { message: "deleted!" };
+    }
+    return response.status(404).send({ message: "exercise not found!" });
+  }
 }

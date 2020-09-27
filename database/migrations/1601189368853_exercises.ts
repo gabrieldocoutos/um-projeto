@@ -5,7 +5,7 @@ export default class Exercises extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid("id").primary();
+      table.increments("id").primary();
       table.timestamps(true);
       table.string("name");
       table.string("muscle_group");

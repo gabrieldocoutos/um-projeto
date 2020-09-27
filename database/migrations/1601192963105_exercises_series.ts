@@ -5,9 +5,9 @@ export default class ExercisesSeries extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid("id").primary();
+      table.increments("id").primary();
       table.timestamps(true);
-      table.uuid("exercise_id").unsigned();
+      table.integer("exercise_id").unsigned();
       table.foreign("exercise_id").references("exercises.id");
       table.integer("repetitions");
       table.float("weight");
