@@ -3,7 +3,7 @@ import User from "App/Models/User";
 
 export default class UsersController {
   public async index() {
-    return User.all();
+    return User.query().preload("roles");
   }
 
   public async create(ctx: HttpContextContract) {

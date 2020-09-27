@@ -1,6 +1,14 @@
 import { DateTime } from "luxon";
 import Hash from "@ioc:Adonis/Core/Hash";
-import { BaseModel, column, beforeSave } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  column,
+  beforeSave,
+  manyToMany,
+  ManyToMany,
+} from "@ioc:Adonis/Lucid/Orm";
+
+import Role from "App/Models/Role";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -32,6 +40,11 @@ export default class User extends BaseModel {
 
   @column({ columnName: "remember_me_token", serializeAs: null })
   public remember_me_token: string;
+
+  @manyToMany(() => Role, {
+    pivotTable: "users_roles",
+  })
+  public roles: ManyToMany<typeof Role>;
 
   @beforeSave()
   public static async hashPassword(auth: User) {
