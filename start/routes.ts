@@ -1,5 +1,3 @@
-import Database from "@ioc:Adonis/Lucid/Database";
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -27,6 +25,10 @@ Route.get("/", async (ctx) => {
 }).middleware("auth");
 
 Route.get("/me", "UsersController.me").middleware("auth");
-Route.get("users", "UsersController.index");
-Route.post("users", "UsersController.create").middleware("auth");
 Route.post("users/login", "UsersController.login");
+
+Route.get("users", "UsersController.index");
+Route.post("users", "UsersController.create");
+
+Route.get("/exercises", "ExercisesController.index").middleware("auth");
+Route.post("/exercises", "ExercisesController.create").middleware("auth");
