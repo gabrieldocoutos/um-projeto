@@ -1,4 +1,3 @@
 // import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class RolesController {
-}
+export default class RolesController {}

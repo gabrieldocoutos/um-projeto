@@ -18,21 +18,21 @@
 |
 */
 
-import Route from "@ioc:Adonis/Core/Route";
+import Route from '@ioc:Adonis/Core/Route'
 
-Route.get("/", async (ctx) => {
-  return ctx.auth;
-}).middleware("auth");
+Route.get('/', async (ctx) => {
+  return ctx.auth
+}).middleware('auth')
 
-Route.get("/me", "UsersController.me").middleware("auth");
-Route.post("users/login", "UsersController.login");
+Route.get('/me', 'UsersController.me').middleware('auth')
+Route.post('users/login', 'UsersController.login')
 
-Route.get("users", "UsersController.index");
-Route.post("users", "UsersController.create");
+Route.get('users', 'UsersController.index')
+Route.post('users', 'UsersController.create')
 
-Route.get("/exercises", "ExercisesController.index").middleware("auth");
-Route.post("/exercises", "ExercisesController.create").middleware("auth");
-Route.put("/exercises/:id", "ExercisesController.update").middleware("auth");
-Route.delete("/exercises/:id", "ExercisesController.delete").middleware("auth");
+Route.get('/exercises', 'ExercisesController.index').middleware('auth')
+Route.post('/exercises', 'ExercisesController.create').middleware('auth')
+Route.put('/exercises/:id', 'ExercisesController.update').middleware('auth')
+Route.delete('/exercises/:id', 'ExercisesController.delete').middleware('auth')
 
-Route.post("/roles", "RolesController.create");
+Route.post('/roles', 'RolesController.create')
